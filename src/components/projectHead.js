@@ -12,18 +12,18 @@ export default function projectHead(props) {
             flexDirection: 'row',
             minWidth: '100vw',
             height: '50vh',
-            backgroundColor: 'darkblue',
+            // backgroundColor: 'darkblue',
             padding: 0,
             margin: 0,
         }}
         >
             <Box
             sx={{
-            flex: 0.1,
+            flex: 1,
             // height: '90%',
             display: 'flex',
             flexDirection: 'column',
-            backgroundColor: 'green',
+            // backgroundColor: 'green',
             padding: 0,
             margin: 0,
             justifyContent: 'end'
@@ -31,11 +31,11 @@ export default function projectHead(props) {
         ></Box>
         <Box
             sx={{
-            flex: 1,
+            flex: 4,
             // height: '90%',
             display: 'flex',
             flexDirection: 'column',
-            backgroundColor: 'yellow',
+            // backgroundColor: 'yellow',
             padding: 0,
             margin: 0,
             justifyContent: 'end'
@@ -56,7 +56,7 @@ export default function projectHead(props) {
         </Box>
         <Box
             sx={{
-            flex: 1,
+            flex: 4,
             // height: '90%',
             display: 'flex',
             flexDirection: 'column',
@@ -79,8 +79,8 @@ export default function projectHead(props) {
         </Box>
         <Box
             sx={{
-            flex: 0.1,
-            backgroundColor: 'green',
+            flex: 1,
+            // backgroundColor: 'green',
             }}
         ></Box>
         </Box>
