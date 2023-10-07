@@ -6,7 +6,7 @@ import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import styled from 'styled-components';
 import ForceGraph from 'react-force-graph-3d';
-
+import { useWindowSize } from "@react-hook/window-size";
 
 function Copyright() {
   return (
@@ -35,7 +35,11 @@ const myData = {
     }))
 };
 
+
 export default function FrontPage() {
+  const [width, height] = useWindowSize();
+  console.log(width);
+  console.log(height);
   return (
     <ThemeProvider theme={defaultTheme}>
       <Box
@@ -50,7 +54,7 @@ export default function FrontPage() {
           sx={{
             display: 'flex',
             flexDirection: 'row',
-            backgroundColor: 'blue',
+            // backgroundColor: 'blue',
             flexGrow: 1 // auto fill the remain
           }}
         >
@@ -60,8 +64,8 @@ export default function FrontPage() {
               flex: 3,
               display: 'flex',
               flexDirection: 'column',
-              backgroundColor: 'orange',
-              alignItems: 'end'
+              // backgroundColor: 'orange',
+              alignItems: 'center'
             }}
           >
             <Box
@@ -70,7 +74,7 @@ export default function FrontPage() {
                 width: '90%',
                 display: 'flex',
                 flexDirection: 'column',
-                backgroundColor: 'black',
+                // backgroundColor: 'black',
                 justifyContent: 'flex-start',
               }}
             >
@@ -78,22 +82,22 @@ export default function FrontPage() {
               sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                backgroundColor: 'yellow',
+                // backgroundColor: 'yellow',
                 flexGrow: 1
               }}
             ></Box>
               <Typography variant="h1"
                 sx={{
-                  color: 'white', 
-                  fontSize: '600%',
+                  color: 'black', 
+                  fontSize: '500%',
                   fontFamily: 'sans-serif',
                   fontStyle: 'bold'
                 }}
               >What's New</Typography>
               <Typography variant="h1" gutterBottom
                 sx={{
-                  color: 'white', 
-                  fontSize: '500%',
+                  color: 'black', 
+                  fontSize: '400%',
                   fontFamily: 'sans-serif',
                   fontStyle: 'bold'
                 }}
@@ -105,7 +109,7 @@ export default function FrontPage() {
                 width: '90%',
                 display: 'flex',
                 flexDirection: 'column',
-                backgroundColor: 'white',
+                // backgroundColor: 'white',
               }}
             >
               <Typography variant="h5" component="h2" gutterBottom>
@@ -121,14 +125,20 @@ export default function FrontPage() {
               flex: 4,
               display: 'flex',
               flexDirection: 'column',
-              backgroundColor: 'green',
+              // backgroundColor: 'green',
               justifyContent: 'center',
               alignItems: 'start'
             }}
           >
-            <ForceGraph graphData={myData} 
-            width={800}
-            height={500}/>
+            <div>
+              <ForceGraph 
+                graphData={myData} 
+                width={width*0.5}
+                height={height*0.8}
+                backgroundColor='white'
+                showNavInfo={false}
+              />
+            </div>
           </Box>
         </Box>
         <Box
