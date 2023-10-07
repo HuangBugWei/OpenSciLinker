@@ -126,7 +126,7 @@ export default function FrontPage() {
                   spacing={2}
                   direction={'row'}
                 >
-                  <Button variant="contained" onClick={() => navigate('/sign')}>Log in</Button>
+                  <Button variant="contained" onClick={() => navigate('/signin')}>Log in</Button>
                 </Stack>
               </Stack>
             </Box>
