@@ -6,6 +6,8 @@ import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import ForceGraph from 'react-force-graph-3d';
 import { useWindowSize } from "@react-hook/window-size";
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 
 function Copyright() {
   return (
@@ -49,7 +51,6 @@ export default function FrontPage() {
         }}
       >
         <Box
-          component="content"
           sx={{
             display: 'flex',
             flexDirection: 'row',
@@ -58,7 +59,7 @@ export default function FrontPage() {
           }}
         >
           <Box
-            component="leftinfo"
+            // component="leftinfo"
             sx={{
               flex: 3,
               display: 'flex',
@@ -90,7 +91,7 @@ export default function FrontPage() {
                   color: 'black', 
                   fontSize: '500%',
                   fontFamily: 'sans-serif',
-                  fontStyle: 'bold'
+                  fontWeight: 900
                 }}
               >What's New</Typography>
               <Typography variant="h1" gutterBottom
@@ -98,7 +99,7 @@ export default function FrontPage() {
                   color: 'black', 
                   fontSize: '400%',
                   fontFamily: 'sans-serif',
-                  fontStyle: 'bold'
+                  fontWeight: 700
                 }}
               >in Open Science</Typography>
             </Box>
@@ -111,15 +112,24 @@ export default function FrontPage() {
                 // backgroundColor: 'white',
               }}
             >
-              <Typography variant="h5" component="h2" gutterBottom>
-              {'Pin a footer to the bottom of the viewport.'}
-              {'The footer will move as the main element of the page grows.'}
-              </Typography>
-              <Typography variant="body1">Sticky footer placeholder.</Typography>
+              <Stack 
+                spacing={2} 
+                direction="column"
+              >
+                <Typography variant="h5" component="h2" gutterBottom>
+                {'Pin a footer to the bottom of the viewport.'}
+                {'The footer will move as the main element of the page grows.'}
+                </Typography>
+                <Stack
+                  spacing={2}
+                  direction={'row'}
+                >
+                  <Button variant="contained">Log in</Button>
+                </Stack>
+              </Stack>
             </Box>
           </Box>
           <Box
-            component="rightinfo"
             sx={{
               flex: 4,
               display: 'flex',
