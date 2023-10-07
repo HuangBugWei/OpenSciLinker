@@ -4,9 +4,12 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
-import styled from 'styled-components';
 import ForceGraph from 'react-force-graph-3d';
 import { useWindowSize } from "@react-hook/window-size";
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+import { useNavigate } from "react-router-dom";
+import {post, get} from '../axios';
 
 function Copyright() {
   return (
@@ -38,6 +41,7 @@ const myData = {
 
 export default function FrontPage() {
   const [width, height] = useWindowSize();
+  const navigate = useNavigate();
   console.log(width);
   console.log(height);
   return (
@@ -50,7 +54,6 @@ export default function FrontPage() {
         }}
       >
         <Box
-          component="content"
           sx={{
             display: 'flex',
             flexDirection: 'row',
@@ -59,7 +62,7 @@ export default function FrontPage() {
           }}
         >
           <Box
-            component="leftinfo"
+            // component="leftinfo"
             sx={{
               flex: 3,
               display: 'flex',
@@ -91,7 +94,7 @@ export default function FrontPage() {
                   color: 'black', 
                   fontSize: '500%',
                   fontFamily: 'sans-serif',
-                  fontStyle: 'bold'
+                  fontWeight: 900
                 }}
               >What's New</Typography>
               <Typography variant="h1" gutterBottom
@@ -99,7 +102,7 @@ export default function FrontPage() {
                   color: 'black', 
                   fontSize: '400%',
                   fontFamily: 'sans-serif',
-                  fontStyle: 'bold'
+                  fontWeight: 700
                 }}
               >in Open Science</Typography>
             </Box>
@@ -112,15 +115,26 @@ export default function FrontPage() {
                 // backgroundColor: 'white',
               }}
             >
-              <Typography variant="h5" component="h2" gutterBottom>
-              {'Pin a footer to the bottom of the viewport.'}
-              {'The footer will move as the main element of the page grows.'}
-              </Typography>
-              <Typography variant="body1">Sticky footer placeholder.</Typography>
+              <Stack 
+                spacing={2} 
+                direction="column"
+              >
+                <Typography variant="h5" component="h2" gutterBottom>
+                {'Pin a footer to the bottom of the viewport.'}
+                {'The footer will move as the main element of the page grows.'}
+                </Typography>
+                <Stack
+                  spacing={2}
+                  direction={'row'}
+                >
+                  <Button variant="contained" onClick={() => navigate('/signin')}>Log in</Button>
+                  <Button variant="contained" onClick={async() => {let msg = await post()}}>post</Button>
+                  <Button variant="contained" onClick={async() => {let msg = await get()}}>get</Button>
+                </Stack>
+              </Stack>
             </Box>
           </Box>
           <Box
-            component="rightinfo"
             sx={{
               flex: 4,
               display: 'flex',
