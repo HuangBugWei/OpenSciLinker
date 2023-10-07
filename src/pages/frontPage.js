@@ -4,7 +4,6 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
-import styled from 'styled-components';
 import ForceGraph from 'react-force-graph-3d';
 import { useWindowSize } from "@react-hook/window-size";
 
