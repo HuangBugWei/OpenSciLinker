@@ -9,6 +9,7 @@ import { useWindowSize } from "@react-hook/window-size";
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import { useNavigate } from "react-router-dom";
+import {post, get} from '../axios';
 
 function Copyright() {
   return (
@@ -127,6 +128,8 @@ export default function FrontPage() {
                   direction={'row'}
                 >
                   <Button variant="contained" onClick={() => navigate('/signin')}>Log in</Button>
+                  <Button variant="contained" onClick={async() => {let msg = await post()}}>post</Button>
+                  <Button variant="contained" onClick={async() => {let msg = await get()}}>get</Button>
                 </Stack>
               </Stack>
             </Box>
