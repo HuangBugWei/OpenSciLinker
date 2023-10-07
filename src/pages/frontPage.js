@@ -8,6 +8,7 @@ import ForceGraph from 'react-force-graph-3d';
 import { useWindowSize } from "@react-hook/window-size";
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import { useNavigate } from "react-router-dom";
 
 function Copyright() {
   return (
@@ -39,6 +40,7 @@ const myData = {
 
 export default function FrontPage() {
   const [width, height] = useWindowSize();
+  const navigate = useNavigate();
   console.log(width);
   console.log(height);
   return (
@@ -124,7 +126,7 @@ export default function FrontPage() {
                   spacing={2}
                   direction={'row'}
                 >
-                  <Button variant="contained">Log in</Button>
+                  <Button variant="contained" onClick={() => navigate('/sign')}>Log in</Button>
                 </Stack>
               </Stack>
             </Box>
