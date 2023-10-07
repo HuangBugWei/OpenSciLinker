@@ -4,35 +4,73 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
+import Box from "@mui/material/Box";
+import { auto } from "@popperjs/core";
 
-export default function ActionAreaCard() {
+export default function ActionAreaCard(props) {
+  const { title, imgurl, contents } = props;
+
   return (
     <Card
       sx={{
         ":hover": {
           boxShadow: 20, // theme.shadows[20]
         },
-        maxWidth: "90%",
+        maxWidth: "80%",
         borderRadius: 3,
         display: "flex",
       }}
     >
-      <CardActionArea onClick={() => console.log("hi")}>
+      <CardActionArea
+        onClick={() => console.log("hi")}
+        sx={{ display: "flex" }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            flexGrow: 1,
+            ml: 2,
+            height: 200,
+            borderRadius: 2,
+          }}
+        >
+          <Box
+            sx={{
+              flex: "1 0 auto",
+              alignItems: "start",
+              p: 0,
+              pt: 2,
+              pb: 2,
+              m: 0,
+              backgroundColor: "green",
+            }}
+          >
+            <Typography component="div" variant="h5">
+              {title}
+            </Typography>
+            <Typography
+              variant="subtitle1"
+              color="text.secondary"
+              component="div"
+            >
+              Mac Miller
+            </Typography>
+            <Typography
+              variant="subtitle1"
+              color="text.secondary"
+              component="div"
+            >
+              {contents}
+            </Typography>
+          </Box>
+        </Box>
         <CardMedia
           component="img"
-          height="140"
-          src="https://source.unsplash.com/random?wallpapers"
-          alt="green iguana"
+          sx={{ width: 300, height: 200, margin: 2, borderRadius: 2 }}
+          src={imgurl}
+          alt="Live from space album cover"
         />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            Lizard
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
-        </CardContent>
       </CardActionArea>
     </Card>
   );
