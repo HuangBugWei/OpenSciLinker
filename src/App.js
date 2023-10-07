@@ -6,7 +6,7 @@ import ProjectPage from "./pages/projectPage";
 
 function App() {
     return (
-        <div>
+        <div style={{ margin: 0 }}>
             <Routes>
                 <Route path="/" element={<FrontPage />} />
                 <Route path="/signin" element={<SignInSide />} />
