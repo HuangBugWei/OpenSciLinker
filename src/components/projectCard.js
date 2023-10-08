@@ -6,7 +6,7 @@ import { CardActionArea } from "@mui/material";
 import Box from "@mui/material/Box";
 
 export default function ActionAreaCard(props) {
-  const { title, imgurl, contents, similarity } = props;
+  const { title, imgurl, contents, similarity, author } = props;
 
   return (
     <Card
@@ -77,7 +77,7 @@ export default function ActionAreaCard(props) {
               color="text.secondary"
               component="div"
             >
-              Mac Miller
+              {author}
             </Typography>
             <Typography
               variant="subtitle1"

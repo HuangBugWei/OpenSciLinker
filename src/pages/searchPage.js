@@ -58,7 +58,8 @@ export default function SearchPage() {
               projects.map((project) => (
                 <ActionAreaCard
                   title={project.title}
-                  contents={project.author_email}
+                  author={project.author_email}
+                  contents={project.content}
                   imgurl={generateRandomImageUrl()}
                   similarity={Math.round(project.score * 100)}
                 />
