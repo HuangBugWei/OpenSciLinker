@@ -5,6 +5,7 @@ import SignInSide from "./pages/signIn";
 import SignUpPage from "./pages/signUp";
 import ProjectPage from "./pages/projectPage";
 import SearchPage from "./pages/searchPage";
+import PostPage from "./pages/postPage";
 import { useBar } from "./hooks/hooks";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/project" element={<ProjectPage />} />
         <Route path="/search" element={<SearchPage />} />
+        <Route path="/post" element={<PostPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </div>
