@@ -6,7 +6,7 @@ import { CardActionArea } from "@mui/material";
 import Box from "@mui/material/Box";
 
 export default function ActionAreaCard(props) {
-  const { title, imgurl, contents } = props;
+  const { title, imgurl, contents, similarity } = props;
 
   return (
     <Card
@@ -57,7 +57,7 @@ export default function ActionAreaCard(props) {
                   display: "-webkit-box",
                   WebkitLineClamp: "1",
                   WebkitBoxOrient: "vertical",
-                  backgroundColor: "green",
+                  // backgroundColor: "green",
                 }}
               >
                 {title}
@@ -65,11 +65,11 @@ export default function ActionAreaCard(props) {
               <Typography
                 component="div"
                 variant="h5"
-                sx={{
-                  backgroundColor: "blue",
-                }}
+                // sx={{
+                //   backgroundColor: "blue",
+                // }}
               >
-                similarity
+                similarity: {similarity} %
               </Typography>
             </Box>
             <Typography

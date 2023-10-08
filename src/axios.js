@@ -56,7 +56,7 @@ const register = async (props) => {
 
 const search = async (props) => {
   console.log("here", props);
-  const { data: response } = await instance.get("/api/search/post", props);
+  const { data: response } = await instance.get("/api/search/post/" + props);
   console.log(response);
   return response;
 };

@@ -5,13 +5,17 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import { search } from "../axios";
+import { useBar } from "../hooks/hooks";
 
 export default function CustomizedInputBase() {
-  const [value, setValue] = React.useState();
+  const [value, setValue] = React.useState("");
+  const { projects, setProjects } = useBar();
+
   const handleSearch = async (event) => {
-    const result = await search(value);
     console.log(value);
-    console.log("in searchBar.js", result);
+    const result = await search(value);
+    console.log("in searchBar.js", result.length);
+    setProjects(result);
   };
   return (
     <Paper
