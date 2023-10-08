@@ -5,6 +5,7 @@ import SignUpPage from "./pages/signUp";
 import { Route, Routes, Navigate } from "react-router-dom";
 import ProjectPage from "./pages/projectPage";
 import { useBar } from "./hooks/hooks";
+import CustomizedInputBase from "./components/searchBar";
 
 function App() {
   const { auth, setAuth, location } = useBar();
@@ -15,6 +16,7 @@ function App() {
         <Route path="/signin" element={<SignInSide />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/project" element={<ProjectPage />} />
+        <Route path="/search" element={<CustomizedInputBase />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </div>

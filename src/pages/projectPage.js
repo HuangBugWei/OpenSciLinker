@@ -4,6 +4,10 @@ import ActionAreaCard from "../components/projectCard";
 import Stack from "@mui/material/Stack";
 
 export default function ProjectPage() {
+  function generateRandomImageUrl() {
+    const baseUrl = "https://source.unsplash.com/random?wallpapers";
+    return `${baseUrl}&${Math.random()}`;
+  }
   const items = [
     "A Marketplace for Open Science Projects",
     "Artemis II and You!",
@@ -20,7 +24,7 @@ export default function ProjectPage() {
     <ActionAreaCard
       title={item}
       contents={contents[idx]}
-      imgurl="https://source.unsplash.com/random?wallpapers"
+      imgurl={generateRandomImageUrl()}
     />
   ));
   return (
@@ -31,12 +35,7 @@ export default function ProjectPage() {
 
 Open research initiatives can involve a variety of participants. Some open research projects involve participants who don’t possess specialized expertise, but other projects require contributors with specific skills. While it’s challenging for those who run open science projects to find people to participate, it’s also challenging for people who want to participate to find those projects. There are well-known, large, open-source software projects (e.g., Python, Linux) and well-known places to find open data (especially from NASA!), but currently, there is no place online for project creators and skilled participants to find each other, mingle, and foster professional relationships to work on interesting open research projects."
       />
-      <Stack spacing={2}>
-        {stackItems}
-        <ActionAreaCard imgurl="https://source.unsplash.com/random?wallpapers" />
-        <ActionAreaCard imgurl="https://source.unsplash.com/random?wallpapers" />
-        <ActionAreaCard imgurl="https://source.unsplash.com/random?wallpapers" />
-      </Stack>
+      <Stack spacing={2}>{stackItems}</Stack>
     </div>
   );
 }
