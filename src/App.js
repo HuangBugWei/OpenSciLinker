@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import FrontPage from "./pages/frontPage";
 import SignInSide from "./pages/signIn";
+import SignUpPage from "./pages/signUp";
 import { Route, Routes, Navigate } from "react-router-dom";
 import ProjectPage from "./pages/projectPage";
 import { useBar } from "./hooks/hooks";
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<FrontPage />} />
         <Route path="/signin" element={<SignInSide />} />
+        <Route path="/signup" element={<SignUpPage />} />
         <Route path="/project" element={<ProjectPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
