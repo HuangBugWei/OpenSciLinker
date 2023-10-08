@@ -1,14 +1,12 @@
 import * as React from "react";
 import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import Box from "@mui/material/Box";
-import { auto } from "@popperjs/core";
 
 export default function ActionAreaCard(props) {
-  const { title, imgurl, contents } = props;
+  const { title, imgurl, contents, similarity, author } = props;
 
   return (
     <Card
@@ -16,20 +14,20 @@ export default function ActionAreaCard(props) {
         ":hover": {
           boxShadow: 20, // theme.shadows[20]
         },
-        maxWidth: "80%",
+        maxWidth: "100%",
         borderRadius: 3,
         display: "flex",
       }}
     >
       <CardActionArea
-        onClick={() => console.log("hi")}
+        onClick={() => console.log("hi")} // navigate to project page
         sx={{ display: "flex" }}
       >
         <Box
           sx={{
             display: "flex",
             flexDirection: "column",
-            flexGrow: 1,
+            flex: 3,
             ml: 2,
             height: 200,
             borderRadius: 2,
@@ -43,15 +41,43 @@ export default function ActionAreaCard(props) {
               m: 0,
             }}
           >
-            <Typography component="div" variant="h5">
-              {title}
-            </Typography>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
+              <Typography
+                component="div"
+                variant="h5"
+                sx={{
+                  flexGrow: 1,
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  display: "-webkit-box",
+                  WebkitLineClamp: "1",
+                  WebkitBoxOrient: "vertical",
+                  // backgroundColor: "green",
+                }}
+              >
+                {title}
+              </Typography>
+              <Typography
+                component="div"
+                variant="h5"
+                // sx={{
+                //   backgroundColor: "blue",
+                // }}
+              >
+                similarity: {similarity} %
+              </Typography>
+            </Box>
             <Typography
               variant="subtitle1"
               color="text.secondary"
               component="div"
             >
-              Mac Miller
+              {author}
             </Typography>
             <Typography
               variant="subtitle1"
@@ -70,9 +96,16 @@ export default function ActionAreaCard(props) {
             </Typography>
           </Box>
         </Box>
+
         <CardMedia
+          sx={{
+            flex: 1,
+            height: 200,
+            margin: 2,
+            borderRadius: 2,
+            backgroundColor: "green",
+          }}
           component="img"
-          sx={{ width: 300, height: 200, margin: 2, borderRadius: 2 }}
           src={imgurl}
           alt="Live from space album cover"
         />

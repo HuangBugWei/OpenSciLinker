@@ -10,6 +10,8 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
 import { post, get } from "../axios";
+import { useBar } from "../hooks/hooks";
+import SendIcon from "@mui/icons-material/Send";
 
 function Copyright() {
   return (
@@ -39,7 +41,12 @@ const myData = {
 };
 
 export default function FrontPage() {
+  const { auth } = useBar();
+
   const [width, height] = useWindowSize();
+  const [buttonText, setButtonText] = React.useState(
+    "Grab the Open Science Project!"
+  );
   const navigate = useNavigate();
   console.log(width);
   console.log(height);
@@ -151,7 +158,29 @@ export default function FrontPage() {
                   >
                     get
                   </Button>
+                  <Button
+                    variant="contained"
+                    onClick={async () => {
+                      console.log({ auth });
+                    }}
+                  >
+                    test createContext
+                  </Button>
                 </Stack>
+                <Button
+                  variant="contained"
+                  onClick={() => navigate("/search")}
+                  onMouseEnter={() =>
+                    setButtonText("Graph he Open Science Project!")
+                  }
+                  onMouseLeave={() =>
+                    setButtonText("Grab the Open Science Project!")
+                  }
+                  endIcon={<SendIcon />}
+                  size="large"
+                >
+                  {buttonText}
+                </Button>
               </Stack>
             </Box>
           </Box>
