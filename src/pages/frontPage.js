@@ -9,8 +9,12 @@ import { useWindowSize } from "@react-hook/window-size";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
+import { post, get } from "../axios";
 import { useBar } from "../hooks/hooks";
 import SendIcon from "@mui/icons-material/Send";
+import knowledge_graph from "./knowledge_graph.json";
+// import knowledge_graph_merged from "../../data/knowledge_graph_merged.json";
+// --------------------------------------------------------------------------------
 
 function Copyright() {
   return (
@@ -28,16 +32,24 @@ function Copyright() {
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
-const N = 300;
+// --------------------------------------------------------------------------------
+// The region I modified
+// const N = 300;
+// const myData = {
+//   nodes: [...Array(N).keys()].map((i) => ({ id: i })),
+//   links: [...Array(N).keys()]
+//     .filter((id) => id)
+//     .map((id) => ({
+//       source: id,
+//       target: Math.round(Math.random() * (id - 1)),
+//     })),
+// };
+
 const myData = {
-  nodes: [...Array(N).keys()].map((i) => ({ id: i })),
-  links: [...Array(N).keys()]
-    .filter((id) => id)
-    .map((id) => ({
-      source: id,
-      target: Math.round(Math.random() * (id - 1)),
-    })),
+  nodes: knowledge_graph.nodes,
+  links: knowledge_graph.links,
 };
+// --------------------------------------------------------------------------------
 
 export default function FrontPage() {
   const { auth } = useBar();
@@ -49,6 +61,96 @@ export default function FrontPage() {
   const navigate = useNavigate();
   console.log(width);
   console.log(height);
+
+  // --------------------------------------------------------------------------------
+  // The region I modified
+  const { useMemo, useState, useRef, useCallback } = React;
+  const FocusGraph = () => {
+    // --------------------------------------------------
+    // The camera focus region
+    const fgRef = useRef();
+
+    const handleClick = useCallback(
+      (node) => {
+        // Aim at node from outside it
+        const distance = 40;
+        const distRatio = 1 + distance / Math.hypot(node.x, node.y, node.z);
+
+        fgRef.current.cameraPosition(
+          {
+            x: node.x * distRatio,
+            y: node.y * distRatio,
+            z: node.z * distRatio,
+          }, // new position
+          node, // lookAt ({ x, y, z })
+          3000 // ms transition duration
+        );
+      },
+      [fgRef]
+    );
+    // --------------------------------------------------
+
+    // // --------------------------------------------------
+    // // The hover region
+    // const NODE_R = 8;
+
+    // const [highlightNodes, setHighlightNodes] = useState(new Set());
+    // const [highlightLinks, setHighlightLinks] = useState(new Set());
+    // const [hoverNode, setHoverNode] = useState(null);
+
+    // const updateHighlight = () => {
+    //   setHighlightNodes(highlightNodes);
+    //   setHighlightLinks(highlightLinks);
+    // };
+
+    // const handleNodeHover = node => {
+    //   highlightNodes.clear();
+    //   highlightLinks.clear();
+    //   if (node) {
+    //     highlightNodes.add(node);
+    //     // node.neighbors.forEach(neighbor => highlightNodes.add(neighbor));
+    //     // node.links.forEach(link => highlightLinks.add(link));
+    //   }
+
+    //   setHoverNode(node || null);
+    //   updateHighlight();
+    // };
+
+    // const paintRing = useCallback((node, ctx) => {
+    //   // add ring just for highlighted nodes
+    //   ctx.beginPath();
+    //   ctx.arc(node.x, node.y, NODE_R * 1.4, 0, 2 * Math.PI, false);
+    //   ctx.fillStyle = node === hoverNode ? 'red' : 'orange';
+    //   ctx.fill();
+    // }, [hoverNode]);
+    // // --------------------------------------------------
+
+    const colormap = {
+      A: "Tomato",
+      B: "DodgerBlue",
+      C: "LightGreen",
+    };
+
+    return (
+      <ForceGraph
+        ref={fgRef}
+        graphData={myData}
+        width={width * 0.5}
+        height={height * 0.8}
+        linkWidth={0.2}
+        backgroundColor="white"
+        showNavInfo={false}
+        nodeLabel={(node) => `<span style="color: purple">${node.name}</span>`}
+        // nodeAutoColorBy={node => node.tag}
+        nodeColor={(node) => colormap[node.tag]}
+        onNodeClick={handleClick}
+        cooldownTicks={100}
+        onEngineStop={() => fgRef.current.zoomToFit(0, 120)}
+      />
+    );
+  };
+  // --------------------------------------------------------------------------------
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <Box
@@ -103,19 +205,7 @@ export default function FrontPage() {
                   fontWeight: 900,
                 }}
               >
-                What's New
-              </Typography>
-              <Typography
-                variant="h1"
-                gutterBottom
-                sx={{
-                  color: "black",
-                  fontSize: "400%",
-                  fontFamily: "sans-serif",
-                  fontWeight: 700,
-                }}
-              >
-                in Open Science
+                OpenSciLinker
               </Typography>
             </Box>
             <Box
@@ -129,10 +219,7 @@ export default function FrontPage() {
             >
               <Stack spacing={2} direction="column">
                 <Typography variant="h5" component="h2" gutterBottom>
-                  {"Pin a footer to the bottom of the viewport."}
-                  {
-                    "The footer will move as the main element of the page grows."
-                  }
+                  {"What's New in Open Science."}
                 </Typography>
                 <Stack
                   spacing="2"
@@ -186,13 +273,7 @@ export default function FrontPage() {
             }}
           >
             <div>
-              <ForceGraph
-                graphData={myData}
-                width={width * 0.5}
-                height={height * 0.8}
-                backgroundColor="white"
-                showNavInfo={false}
-              />
+              <FocusGraph />
             </div>
           </Box>
         </Box>
