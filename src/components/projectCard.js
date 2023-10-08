@@ -5,7 +5,6 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import Box from "@mui/material/Box";
-import { auto } from "@popperjs/core";
 
 export default function ActionAreaCard(props) {
   const { title, imgurl, contents } = props;
@@ -16,7 +15,7 @@ export default function ActionAreaCard(props) {
         ":hover": {
           boxShadow: 20, // theme.shadows[20]
         },
-        maxWidth: "80%",
+        maxWidth: "100%",
         borderRadius: 3,
         display: "flex",
       }}
@@ -29,7 +28,7 @@ export default function ActionAreaCard(props) {
           sx={{
             display: "flex",
             flexDirection: "column",
-            flexGrow: 1,
+            flex: 3,
             ml: 2,
             height: 200,
             borderRadius: 2,
@@ -70,9 +69,16 @@ export default function ActionAreaCard(props) {
             </Typography>
           </Box>
         </Box>
+
         <CardMedia
+          sx={{
+            flex: 1,
+            height: 200,
+            margin: 2,
+            borderRadius: 2,
+            backgroundColor: "green",
+          }}
           component="img"
-          sx={{ width: 300, height: 200, margin: 2, borderRadius: 2 }}
           src={imgurl}
           alt="Live from space album cover"
         />
