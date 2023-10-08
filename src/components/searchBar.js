@@ -17,6 +17,7 @@ export default function CustomizedInputBase() {
     console.log("in searchBar.js", result.length);
     setProjects(result);
   };
+
   return (
     <Paper
       component="form"
@@ -30,7 +31,12 @@ export default function CustomizedInputBase() {
         }}
       />
       <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-      <IconButton type="button" sx={{ p: "10px" }} onClick={handleSearch}>
+      <IconButton
+        type="button"
+        sx={{ p: "10px" }}
+        onClick={handleSearch}
+        disabled={value === ""}
+      >
         <SearchIcon />
       </IconButton>
     </Paper>
