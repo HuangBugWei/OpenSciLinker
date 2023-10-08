@@ -7,6 +7,8 @@ const UseBarContext = React.createContext({
   setAuth: () => {},
   projects: [],
   setProjects: () => {},
+  ownprojects: [],
+  setOwnProjects: () => {},
   email: "",
   setEmail: () => {},
   user: "",
@@ -19,6 +21,7 @@ const UseBarProvider = (props) => {
   const [user, setUser] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [projects, setProjects] = React.useState([]);
+  const [ownprojects, setOwnProjects] = React.useState([]);
 
   React.useEffect(() => {
     // if ahth is true, get project list
@@ -39,6 +42,8 @@ const UseBarProvider = (props) => {
         setEmail,
         user,
         setUser,
+        ownprojects,
+        setOwnProjects,
       }}
       {...props}
     ></UseBarContext.Provider>

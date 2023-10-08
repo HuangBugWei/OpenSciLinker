@@ -5,17 +5,22 @@ import SignUpPage from "./pages/signUp";
 import ProjectPage from "./pages/projectPage";
 import SearchPage from "./pages/searchPage";
 import PostPage from "./pages/postPage";
+import { useBar } from "./hooks/hooks";
 
 function App() {
+  const { auth } = useBar();
   return (
     <div style={{ margin: 0 }}>
       <Routes>
         <Route path="/" element={<FrontPage />} />
-        <Route path="/signin" element={<SignInSide />} />
+        <Route
+          path="/signin"
+          element={auth ? <SearchPage /> : <SignInSide />}
+        />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/project" element={<ProjectPage />} />
         <Route path="/search" element={<SearchPage />} />
-        <Route path="/post" element={<PostPage />} />
+        <Route path="/post" element={auth ? <PostPage /> : <SignInSide />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </div>

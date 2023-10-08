@@ -4,13 +4,16 @@ import Stack from "@mui/material/Stack";
 import CustomizedInputBase from "../components/searchBar";
 import ActionAreaCard from "../components/projectCard";
 import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 import { useBar } from "../hooks/hooks";
+import { useNavigate } from "react-router-dom";
 
 export default function SearchPage() {
-  const { projects } = useBar();
+  const { auth, projects } = useBar();
   const [buttonText, setButtonText] = useState(
     "Grab the Open Science Project!"
   );
+  const navigate = useNavigate();
   function generateRandomImageUrl() {
     const baseUrl = "https://source.unsplash.com/random?wallpapers";
     return `${baseUrl}&${Math.random()}`;
@@ -20,19 +23,43 @@ export default function SearchPage() {
     console.log("in searchpages.js");
     console.log(projects);
   }, [projects]);
+
   return (
     <Stack spacing={1}>
       <Box
         sx={{
           width: "100vw",
           height: "40vh",
-          backgroundColor: "yellow",
+          backgroundColor: "#FFFF6F",
           display: "flex",
           flexDirection: "column",
           justifyContent: "flex-end",
           alignItems: "bottom",
         }}
       >
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          sx={{
+            width: "200px",
+            height: "80px",
+            position: "absolute",
+            top: "4vh",
+            right: "4vw",
+            fontSize: "18px",
+            backgroundColor: "#6A6AFF",
+          }}
+          onClick={() => {
+            if (auth) {
+              navigate("/post");
+            } else {
+              navigate("/signin");
+            }
+          }}
+        >
+          Post Your Idea
+        </Button>
         <Typography
           variant="h1"
           sx={{

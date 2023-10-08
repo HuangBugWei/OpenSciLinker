@@ -4,8 +4,8 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
+// import FormControlLabel from "@mui/material/FormControlLabel";
+// import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
@@ -14,6 +14,7 @@ import Typography from "@mui/material/Typography";
 // import { createTheme, ThemeProvider } from '@mui/material/styles';
 // import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { login } from "../axios";
+import { useBar } from "../hooks/hooks";
 
 function Copyright(props) {
   return (
@@ -24,9 +25,7 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
+      {"What's New Teams "}
       {new Date().getFullYear()}
       {"."}
     </Typography>
@@ -38,6 +37,10 @@ function Copyright(props) {
 // const defaultTheme = createTheme();
 
 export default function SignInSide() {
+  const { setEmail, setUser, setAuth } = useBar();
+  const [errmsg, setErrmsg] = React.useState("");
+  const navigate = useNavigate();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -46,9 +49,17 @@ export default function SignInSide() {
       password: data.get("password"),
     };
     const result = await login(submitInfo);
+    if (result.isSuccess === 1) {
+      setAuth(true);
+      setUser(result.username);
+      setEmail(result.email);
+      setErrmsg("");
+      navigate("/search");
+    } else {
+      setErrmsg(result.message);
+    }
     console.log("in signin.js", result);
   };
-  const navigate = useNavigate();
 
   return (
     // <ThemeProvider theme={defaultTheme}>
@@ -112,10 +123,13 @@ export default function SignInSide() {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
+            {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
-            />
+            /> */}
+            <Typography component="p" variant="p" color={"red"}>
+              {errmsg}
+            </Typography>
             <Button
               type="submit"
               fullWidth

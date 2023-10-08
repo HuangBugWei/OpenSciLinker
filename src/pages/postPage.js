@@ -1,44 +1,39 @@
 import React from "react";
-import { Button, Box } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
+import Button from "@mui/material/Button";
+import { useBar } from "../hooks/hooks";
+import { useNavigate } from "react-router-dom";
+import { postproject } from "../axios";
 
 export default function PostPage() {
+  const { email } = useBar();
+  const navigate = useNavigate();
   const [title, setTitle] = React.useState("");
   const [content, setContent] = React.useState("");
-  const tags = [
-    "Arts",
-    "Biology",
-    "Environmental Science",
-    "History",
-    "Language",
-    "Literature",
-    "Health and Medicine",
-    "Nature",
-    "Physics",
-    "Chemistry",
-    "Social Science",
-    "Astronomy",
-    "Education",
-    "Mathematics",
-    "Cultural Studies",
-    "Geology",
-    "Psychology",
-    "Anthropology",
-    "Political Science",
-    "Computer Science",
-    "Electrical Engineering",
-    "Mechanical Engineering",
-    "Civil Engineering",
-    "Materials Science",
-    "Data",
-  ];
-  const postTag = [];
+  const [link, setLink] = React.useState("");
+
   const handleSubmit = async (event) => {
-    console.log(title);
+    event.preventDefault();
+    const submitInfo = {
+      title: title,
+      content: content,
+      author_email: email,
+      url: link,
+    };
+    const result = await postproject(submitInfo);
+    // if (result.isSuccess === 1) {
+    //   setAuth(true);
+    //   setUser(result.username);
+    //   setEmail(result.email);
+    //   setErrmsg("");
+    //   navigate("/search");
+    // } else {
+    //   setErrmsg(result.message);
+    // }
+    // console.log("in signin.js", result);
   };
 
   return (
@@ -47,13 +42,32 @@ export default function PostPage() {
         sx={{
           width: "100vw",
           height: "40vh",
-          backgroundColor: "yellow",
+          backgroundColor: "#FFFF6F",
           display: "flex",
           flexDirection: "column",
           justifyContent: "flex-end",
           alignItems: "center",
         }}
       >
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          sx={{
+            width: "200px",
+            height: "80px",
+            position: "absolute",
+            top: "4vh",
+            right: "4vw",
+            fontSize: "18px",
+            backgroundColor: "#6A6AFF",
+          }}
+          onClick={() => {
+            navigate("/search");
+          }}
+        >
+          Back to Search
+        </Button>
         <Typography
           variant="h1"
           sx={{
@@ -96,7 +110,7 @@ export default function PostPage() {
                 overflow: "hidden",
                 textOverflow: "ellipsis",
                 display: "-webkit-box",
-                WebkitLineClamp: "4",
+                WebkitLineClamp: "1",
                 WebkitBoxOrient: "vertical",
                 p: 1,
                 pl: 0,
@@ -105,10 +119,9 @@ export default function PostPage() {
               Give your project a fancy name!
             </Typography>
             <TextField
-              id="outlined-multiline-flexible"
+              id="title"
               placeholder="type your project title"
               fullWidth={false}
-              name="title"
               multiline
               maxRows={4}
               style={{ width: "80%" }}
@@ -126,7 +139,7 @@ export default function PostPage() {
                 overflow: "hidden",
                 textOverflow: "ellipsis",
                 display: "-webkit-box",
-                WebkitLineClamp: "4",
+                WebkitLineClamp: "1",
                 WebkitBoxOrient: "vertical",
                 p: 1,
                 pl: 0,
@@ -135,8 +148,7 @@ export default function PostPage() {
               Introduce your project!
             </Typography>
             <TextField
-              id="outlined-multiline-flexible"
-              name="content"
+              id="content"
               placeholder="type your project introduction"
               fullWidth={false}
               multiline
@@ -146,7 +158,7 @@ export default function PostPage() {
                 setContent(event.target.value);
               }}
             />
-            {/* <Typography
+            <Typography
               variant="subtitle1"
               color="text.secondary"
               component="div"
@@ -156,25 +168,34 @@ export default function PostPage() {
                 overflow: "hidden",
                 textOverflow: "ellipsis",
                 display: "-webkit-box",
-                WebkitLineClamp: "4",
+                WebkitLineClamp: "1",
                 WebkitBoxOrient: "vertical",
                 p: 1,
                 pl: 0,
               }}
             >
-              Check the related filed of the project!
+              Additional link to the project (optional)
             </Typography>
-            <div style={{ width: "80%" }}>
-              {tags.map((tag) => (
-                <FormControlLabel control={<Checkbox />} label={tag} id={tag} />
-              ))}
-            </div> */}
+            <TextField
+              id="link"
+              placeholder="github link etc."
+              fullWidth={false}
+              multiline
+              rows={1}
+              style={{ width: "80%" }}
+              onChange={(event) => {
+                setLink(event.target.value);
+              }}
+            />
             <Button
               type="submit"
               fullWidth
               variant="contained"
               style={{ width: "80%" }}
               disabled={title === "" || content === ""}
+              onClick={(event) => {
+                handleSubmit(event);
+              }}
             >
               submit
             </Button>

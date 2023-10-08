@@ -9,7 +9,6 @@ import { useWindowSize } from "@react-hook/window-size";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
-import { post, get } from "../axios";
 import { useBar } from "../hooks/hooks";
 import SendIcon from "@mui/icons-material/Send";
 
