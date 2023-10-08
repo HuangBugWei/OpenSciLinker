@@ -40,10 +40,7 @@ export default function ActionAreaCard(props) {
               flex: "1 0 auto",
               alignItems: "start",
               p: 0,
-              pt: 2,
-              pb: 2,
               m: 0,
-              backgroundColor: "green",
             }}
           >
             <Typography component="div" variant="h5">
@@ -60,6 +57,14 @@ export default function ActionAreaCard(props) {
               variant="subtitle1"
               color="text.secondary"
               component="div"
+              sx={{
+                fontSize: "150%",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                display: "-webkit-box",
+                WebkitLineClamp: "4",
+                WebkitBoxOrient: "vertical",
+              }}
             >
               {contents}
             </Typography>
