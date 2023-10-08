@@ -30,17 +30,16 @@ export default function SearchPage() {
   return (
     <Stack spacing={1}>
       <Box
-        sx={{ width: "100vw", height: "35vh", backgroundColor: "yellow" }}
+        sx={{ width: "100vw", height: "40vh", backgroundColor: "yellow" }}
       ></Box>
       <Box
         sx={{
           width: "100vw",
-          backgroundColor: "orange",
           display: "flex",
           justifyContent: "center",
         }}
       >
-        <Stack spacing={2} sx={{ width: "80vw", backgroundColor: "blue" }}>
+        <Stack spacing={2} sx={{ width: "80vw" }}>
           <CustomizedInputBase />
           <Stack spacing={2}>{stackItems}</Stack>
         </Stack>
