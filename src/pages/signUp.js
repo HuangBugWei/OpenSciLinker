@@ -9,6 +9,8 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { register } from "../axios";
+import { useNavigate } from "react-router-dom";
+import { useBar } from "../hooks/hooks";
 
 function Copyright(props) {
   return (
@@ -19,9 +21,7 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
+      {"What's New Teams "}
       {new Date().getFullYear()}
       {"."}
     </Typography>
@@ -33,6 +33,10 @@ function Copyright(props) {
 // const defaultTheme = createTheme();
 
 export default function SignUpPage() {
+  const navigate = useNavigate();
+  const [errmsg, setErrmsg] = React.useState("");
+  const { setEmail, setUser, setAuth } = useBar();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -42,6 +46,15 @@ export default function SignUpPage() {
       password: data.get("password"),
     };
     const result = await register(submitInfo);
+    if (result.message === "Email already registered") {
+      setErrmsg("Email already registered");
+    } else if (result.message === "Registration successful") {
+      setAuth(true);
+      setUser(result.username);
+      setEmail(result.email);
+      setErrmsg("");
+      navigate("/search");
+    }
     console.log("in signup.js", result);
   };
 
@@ -108,6 +121,9 @@ export default function SignUpPage() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             /> */}
+            <Typography component="p" variant="p" color={"red"}>
+              {errmsg}
+            </Typography>
             <Button
               type="submit"
               fullWidth

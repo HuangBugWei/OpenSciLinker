@@ -30,7 +30,7 @@ const search = async (props) => {
 
 const postproject = async (props) => {
   console.log("here", props);
-  const { data: response } = await instance.post("/api/post/" + props);
+  const { data: response } = await instance.post("/api/posts/" + props);
   console.log(response);
   return response;
 };

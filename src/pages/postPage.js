@@ -42,7 +42,7 @@ export default function PostPage() {
         sx={{
           width: "100vw",
           height: "40vh",
-          backgroundColor: "#FFFF6F",
+          backgroundColor: "black",
           display: "flex",
           flexDirection: "column",
           justifyContent: "flex-end",
@@ -58,7 +58,7 @@ export default function PostPage() {
             height: "80px",
             position: "absolute",
             top: "4vh",
-            right: "4vw",
+            left: "4vw",
             fontSize: "18px",
             backgroundColor: "#6A6AFF",
           }}
@@ -68,10 +68,29 @@ export default function PostPage() {
         >
           Back to Search
         </Button>
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          sx={{
+            width: "200px",
+            height: "80px",
+            position: "absolute",
+            top: "4vh",
+            right: "4vw",
+            fontSize: "18px",
+            backgroundColor: "#6A6AFF",
+          }}
+          onClick={() => {
+            navigate("/ownproject");
+          }}
+        >
+          Your Own Projects
+        </Button>
         <Typography
           variant="h1"
           sx={{
-            color: "black",
+            color: "white",
             fontSize: "500%",
             fontFamily: "sans-serif",
             fontWeight: 900,
