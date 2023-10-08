@@ -1,6 +1,5 @@
 import * as React from "react";
 import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
@@ -21,7 +20,7 @@ export default function ActionAreaCard(props) {
       }}
     >
       <CardActionArea
-        onClick={() => console.log("hi")}
+        onClick={() => console.log("hi")} // navigate to project page
         sx={{ display: "flex" }}
       >
         <Box
@@ -42,9 +41,37 @@ export default function ActionAreaCard(props) {
               m: 0,
             }}
           >
-            <Typography component="div" variant="h5">
-              {title}
-            </Typography>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
+              <Typography
+                component="div"
+                variant="h5"
+                sx={{
+                  flexGrow: 1,
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  display: "-webkit-box",
+                  WebkitLineClamp: "1",
+                  WebkitBoxOrient: "vertical",
+                  backgroundColor: "green",
+                }}
+              >
+                {title}
+              </Typography>
+              <Typography
+                component="div"
+                variant="h5"
+                sx={{
+                  backgroundColor: "blue",
+                }}
+              >
+                similarity
+              </Typography>
+            </Box>
             <Typography
               variant="subtitle1"
               color="text.secondary"
