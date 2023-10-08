@@ -10,6 +10,7 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
 import { post, get } from "../axios";
+import { useBar } from "../hooks/hooks";
 
 function Copyright() {
   return (
@@ -39,6 +40,8 @@ const myData = {
 };
 
 export default function FrontPage() {
+  const { auth } = useBar();
+
   const [width, height] = useWindowSize();
   const navigate = useNavigate();
   console.log(width);
@@ -150,6 +153,14 @@ export default function FrontPage() {
                     }}
                   >
                     get
+                  </Button>
+                  <Button
+                    variant="contained"
+                    onClick={async () => {
+                      console.log({ auth });
+                    }}
+                  >
+                    test createContext
                   </Button>
                 </Stack>
               </Stack>
