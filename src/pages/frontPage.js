@@ -135,52 +135,44 @@ export default function FrontPage() {
                     "The footer will move as the main element of the page grows."
                   }
                 </Typography>
-                <Stack spacing={2} direction={"row"}>
+                <Stack
+                  spacing="2"
+                  direction="row"
+                  display="flex"
+                  alignItems="center"
+                >
                   <Button
                     variant="contained"
                     onClick={() => navigate("/signin")}
+                    size="large"
                   >
                     Log in
                   </Button>
-                  <Button
-                    variant="contained"
-                    onClick={async () => {
-                      let msg = await post();
+                  <Typography
+                    variant="button"
+                    sx={{
+                      textAlign: "center",
+                      pl: 2,
+                      pr: 2,
                     }}
                   >
-                    post
-                  </Button>
+                    or
+                  </Typography>
                   <Button
                     variant="contained"
-                    onClick={async () => {
-                      let msg = await get();
-                    }}
+                    onClick={() => navigate("/search")}
+                    onMouseEnter={() =>
+                      setButtonText("Graph the Open Science Project!")
+                    }
+                    onMouseLeave={() =>
+                      setButtonText("Grab the Open Science Project!")
+                    }
+                    endIcon={<SendIcon />}
+                    size="large"
                   >
-                    get
-                  </Button>
-                  <Button
-                    variant="contained"
-                    onClick={async () => {
-                      console.log({ auth });
-                    }}
-                  >
-                    test createContext
+                    {buttonText}
                   </Button>
                 </Stack>
-                <Button
-                  variant="contained"
-                  onClick={() => navigate("/search")}
-                  onMouseEnter={() =>
-                    setButtonText("Graph he Open Science Project!")
-                  }
-                  onMouseLeave={() =>
-                    setButtonText("Grab the Open Science Project!")
-                  }
-                  endIcon={<SendIcon />}
-                  size="large"
-                >
-                  {buttonText}
-                </Button>
               </Stack>
             </Box>
           </Box>

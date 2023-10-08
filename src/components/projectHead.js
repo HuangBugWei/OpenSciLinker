@@ -73,9 +73,8 @@ export default function projectHead(props) {
             height: "45vh",
             width: "100%",
             backgroundSize: "cover",
-            backgroundPosition: "bottom",
-            backgroundImage:
-              "url(https://source.unsplash.com/random?wallpapers)",
+            backgroundPosition: "center",
+            backgroundImage: `url(${imgurl})`,
           }}
         ></Box>
       </Box>

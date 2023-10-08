@@ -69,11 +69,7 @@ export default function ProjectTab(props) {
               </Typography>
             </Box>
           </TabPanel>
-          <TabPanel value="2">
-            <iframe src="https://youtu.be/EdPTF4ohzkM">
-              Watch this video on YouTube!
-            </iframe>
-          </TabPanel>
+          <TabPanel value="2"></TabPanel>
           <TabPanel value="3">Item Three</TabPanel>
         </TabContext>
       </Box>

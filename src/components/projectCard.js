@@ -4,9 +4,11 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import Box from "@mui/material/Box";
+import { useNavigate } from "react-router-dom";
 
 export default function ActionAreaCard(props) {
   const { title, imgurl, contents, similarity, author } = props;
+  const navigate = useNavigate();
 
   return (
     <Card
@@ -20,7 +22,12 @@ export default function ActionAreaCard(props) {
       }}
     >
       <CardActionArea
-        onClick={() => console.log("hi")} // navigate to project page
+        onClick={() => {
+          console.log("hi");
+          navigate("/project", {
+            state: { value: props },
+          });
+        }} // navigate to project page
         sx={{ display: "flex" }}
       >
         <Box
