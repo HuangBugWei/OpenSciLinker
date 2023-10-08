@@ -13,7 +13,6 @@ import { post, get } from "../axios";
 import { useBar } from "../hooks/hooks";
 import SendIcon from "@mui/icons-material/Send";
 import knowledge_graph from "./knowledge_graph.json";
-// import knowledge_graph_merged from "../../data/knowledge_graph_merged.json";
 // --------------------------------------------------------------------------------
 
 function Copyright() {
