@@ -4,12 +4,14 @@ import InputBase from "@mui/material/InputBase";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
+import { search } from "../axios";
 
 export default function CustomizedInputBase() {
   const [value, setValue] = React.useState();
-  const handleSearch = (event) => {
-    // changed the "handleSearch()" function
+  const handleSearch = async (event) => {
+    const result = await search(value);
     console.log(value);
+    console.log("in searchBar.js", result);
   };
   return (
     <Paper

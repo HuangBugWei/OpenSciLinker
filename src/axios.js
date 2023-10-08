@@ -54,4 +54,11 @@ const register = async (props) => {
   return response;
 };
 
-export { post, get, login, register };
+const search = async (props) => {
+  console.log("here", props);
+  const { data: response } = await instance.get("/api/search/post", props);
+  console.log(response);
+  return response;
+};
+
+export { post, get, login, register, search };
